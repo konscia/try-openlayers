@@ -1,0 +1,27 @@
+{
+  "name": "try-openlayers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-parcel": "parcel build-app-parcel/index.html",
+    "build-parcel": "parcel build --public-url . build-app-parcel/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konscia/try-openlayers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/konscia/try-openlayers/issues"
+  },
+  "homepage": "https://github.com/konscia/try-openlayers#readme",
+  "dependencies": {
+    "ol": "^5.3.3"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  }
+}
