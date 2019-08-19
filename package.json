@@ -10,7 +10,8 @@
     "build": "webpack build-app-webpack/app.js",
     "serve": "webpack-dev-server build-app-webpack/app.js",
 
-    "serve-cluster": "webpack-dev-server cluster-example/app.js --port 11111"
+    "serve-cluster": "webpack-dev-server example-cluster/app.js --port 11111",
+    "serve-projection": "webpack-dev-server example-projection/app.js --port 22222"
   },
   "repository": {
     "type": "git",
