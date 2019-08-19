@@ -8,7 +8,9 @@
     "start-parcel": "parcel build-app-parcel/index.html",
     "build-parcel": "parcel build --public-url . build-app-parcel/index.html",
     "build": "webpack build-app-webpack/app.js",
-    "serve": "webpack-dev-server build-app-webpack/app.js"
+    "serve": "webpack-dev-server build-app-webpack/app.js",
+
+    "serve-cluster": "webpack-dev-server cluster-example/app.js --port 11111"
   },
   "repository": {
     "type": "git",
