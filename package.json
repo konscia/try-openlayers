@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-parcel": "parcel build-app-parcel/index.html",
-    "build-parcel": "parcel build --public-url . build-app-parcel/index.html"
+    "build-parcel": "parcel build --public-url . build-app-parcel/index.html",
+    "build": "webpack build-app-webpack/app.js",
+    "serve": "webpack-dev-server build-app-webpack/app.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +21,10 @@
   },
   "homepage": "https://github.com/konscia/try-openlayers#readme",
   "dependencies": {
-    "ol": "^5.3.3"
+    "ol": "^5.3.3",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.3"
