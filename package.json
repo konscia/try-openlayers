@@ -9,7 +9,6 @@
     "build-parcel": "parcel build --public-url . build-app-parcel/index.html",
     "build": "webpack build-app-webpack/app.js",
     "serve": "webpack-dev-server build-app-webpack/app.js",
-
     "serve-cluster": "webpack-dev-server example-cluster/app.js --port 11111",
     "serve-projection": "webpack-dev-server example-projection/app.js --port 22222"
   },
@@ -25,6 +24,7 @@
   "homepage": "https://github.com/konscia/try-openlayers#readme",
   "dependencies": {
     "ol": "^5.3.3",
+    "ol-ext": "3.0.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0"
