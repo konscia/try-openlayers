@@ -10,6 +10,7 @@
     "build": "webpack build-app-webpack/app.js",
     "serve": "webpack-dev-server build-app-webpack/app.js",
     "serve-cluster": "webpack-dev-server example-cluster/app.js --port 11111",
+    "serve-supercluster": "webpack-dev-server example-supercluster/app.js --port 33333",
     "serve-projection": "webpack-dev-server example-projection/app.js --port 22222"
   },
   "repository": {
@@ -25,6 +26,8 @@
   "dependencies": {
     "ol": "^5.3.3",
     "ol-ext": "3.0.0",
+    "ol-supercluster": "0.0.2",
+    "supercluster": "^6.0.2",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0"
