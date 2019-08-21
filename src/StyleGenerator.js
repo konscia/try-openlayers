@@ -31,6 +31,27 @@ export default class StyleGenerator {
     });
   }
 
+  circleWithTextAndTrasnparentBorder(radius, text, color) {
+    return new Style({
+      image: new CircleStyle({
+        radius: radius,
+        stroke: new Stroke({
+          color: "rgba("+color+",0.5)",
+          width: 2,
+        }),
+        fill: new Fill({
+          color:"rgba("+color+",1)"
+        })
+      }),
+      text: new Text({
+        text: text,
+        fill: new Fill({
+          color: '#fff'
+        })
+      })
+    });
+  }
+
   circle(radius, color) {
     return new Style({
       image: new CircleStyle({
