@@ -52,6 +52,26 @@ export default class StyleGenerator {
     });
   }
 
+  circleForClusterExample() {
+    return new Style({
+      image: new CircleStyle({
+        radius: 5,
+        stroke: new Stroke({
+          color:"rgba(0,255,255,1)",
+          width:1
+        }),
+        fill: new Fill({
+          color:"rgba(0,255,255,0.3)"
+        })
+      }),
+      // Draw a link beetween points (or not)
+      stroke: new Stroke({
+        color:"#fff",
+        width:1
+      })
+    });
+  }
+
   circle(radius, color) {
     return new Style({
       image: new CircleStyle({
