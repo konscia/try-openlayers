@@ -20,7 +20,6 @@ const maxZoomToExpandCluster = 19;
 
 let features = featureGenerator.generatePoints(80);
 
-
 features.forEach((feature) => {
   feature.set('totalValue', 100);
   feature.set('randomValue', Math.floor(Math.random()*100));
