@@ -8,6 +8,21 @@ export default class FeatureGenerator {
     this.centerLat = centerLat;
   }
 
+  generatePointsWithSomeOnSamePosition(numOfPoints, numOfFeatures) {
+    let points = new Array(numOfPoints);
+    for (var i = 0; i < numOfPoints; ++i) {
+      points[i] = this.generatePoint(this.boxBound);
+    }
+
+    let features = new Array(numOfFeatures);
+    for (i = 0; i < numOfFeatures; ++i) {
+      let point = points[Math.floor(Math.random()*numOfPoints)];
+      features[i] = new Feature(point);
+    }
+
+    return features;
+  }
+
   generatePoints(numOfPoints) {
     let features = new Array(numOfPoints);
     for (var i = 0; i < numOfPoints; ++i) {
