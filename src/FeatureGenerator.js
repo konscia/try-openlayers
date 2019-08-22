@@ -9,9 +9,11 @@ export default class FeatureGenerator {
   }
 
   generatePoints(numOfPoints) {
-    let features = new Array(numOfPoints);
-    for (var i = 0; i < numOfPoints; ++i) {
-      features[i] = new Feature(this.generatePoint(this.boxBound));
+    let features = new Array(numOfPoints*2);
+    for (var i = 0; i < numOfPoints * 2; ++i) {
+      let point = this.generatePoint(this.boxBound);
+      features[i] = new Feature(point);
+      features[++i] = new Feature(point);
     }
 
     return features;
