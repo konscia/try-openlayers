@@ -24,8 +24,8 @@
   },
   "homepage": "https://github.com/konscia/try-openlayers#readme",
   "dependencies": {
-    "ol": "^5.3.3",
-    "ol-ext": "3.0.0",
+    "ol": "5.3.3",
+    "ol-ext": "3.0.3",
     "ol-supercluster": "0.1.1",
     "supercluster": "^6.0.2",
     "webpack": "^4.39.2",
