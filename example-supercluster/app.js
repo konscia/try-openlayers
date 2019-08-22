@@ -11,6 +11,7 @@ import FeatureGenerator from "./../src/FeatureGenerator";
 import StyleGenerator from "../src/StyleGenerator";
 import SuperCluster from "ol-supercluster";
 import convexHull from "ol-ext/geom/ConvexHull";
+import Popup from "ol-ext/overlay/Popup";
 
 const styleGenerator = new StyleGenerator();
 const featureGenerator = new FeatureGenerator(1000000, 0, 0);
@@ -21,9 +22,9 @@ let features = featureGenerator.generatePoints(80);
 
 
 features.forEach((feature) => {
-  feature.set('aValue', 1);
+  feature.set('totalValue', 100);
+  feature.set('randomValue', Math.floor(Math.random()*100));
 });
-
 let view = new View({
   center: [0, 0],
   zoom: 2
@@ -41,16 +42,21 @@ let styleCache = {};
 function getStyle (feature){
   let features = feature.get('features');
   let size = features.length;
-  let totalValue = 0;
+  let sumValue = 0;
+  let sumTotal = 0;
   features.forEach((feature) => {
-     totalValue += feature.get('aValue');
+     sumValue += feature.get('randomValue');
+     sumTotal += feature.get('totalValue');
   });
-  let index = size+"-"+totalValue+type;
+  let index = size+"-"+sumTotal+type;
   let style = styleCache[index];
   if (!style) {
     let color = size > 25 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
     let radius = Math.max(8, Math.min(size*0.75, 20));
-    style = styleCache[index] = styleGenerator.circleWithTextAndTrasnparentBorder(radius, totalValue.toString()+type, color);
+    style = styleCache[index] = styleGenerator.circleWithTextAndTrasnparentBorder(
+      radius,
+      type === '%' ? Math.round(sumValue / sumTotal * 100).toString() + '%' : sumValue.toString(),
+      color);
   }
   return [style];
 }
@@ -98,9 +104,7 @@ map.addInteraction(selectCluster);
 // On selected => get feature in cluster and show info
 selectCluster.getFeatures().on(['add'], function (e){
   let zoomToFly = clusterSource.getClusterExpansionZoom(e.element);
-
-  console.log('zoomToFly', zoomToFly);
-  console.log('count elements', e.element.get('features').length);
+  let features = e.element.get('features');
 
   if(zoomToFly <= maxZoomToExpandCluster && zoomToFly !== view.getZoom()) {
     view.animate({
@@ -109,10 +113,16 @@ selectCluster.getFeatures().on(['add'], function (e){
       center: e.element.getGeometry().getFirstCoordinate()
     });
   }
+
+  if(features.length === 1) {
+    let feature = features[0];
+    let content = 'Um valor qualquer: ' + feature.get("randomValue");
+    popup.show(feature.getGeometry().getFirstCoordinate(), content);
+  }
 });
 
 selectCluster.getFeatures().on(['remove'], function (e){
-  console.log('remove');
+  popup.hide();
 });
 
 
@@ -148,3 +158,19 @@ hover.on("enter", function(e) {
 hover.on("leave", function(e) {
   vector.getSource().clear();
 });
+
+// Popup overlay
+var popup = new Popup({
+  popupClass: "default", //"tooltips", "warning" "black" "default", "tips", "shadow",
+  closeBox: true,
+  onshow: function() {
+    // console.log("You opened the box");
+  },
+  onclose: function() {
+    // console.log("You close the box");
+  },
+  positioning: 'auto',
+  autoPan: true,
+  autoPanAnimation: { duration: 250 }
+});
+map.addOverlay(popup);
