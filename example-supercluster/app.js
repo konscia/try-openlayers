@@ -14,9 +14,11 @@ import convexHull from "ol-ext/geom/ConvexHull";
 
 const styleGenerator = new StyleGenerator();
 const featureGenerator = new FeatureGenerator(1000000, 0, 0);
+const animationTime = 400;
+const maxZoomToExpandCluster = 19;
 
+let features = featureGenerator.generatePoints(80);
 
-let features = featureGenerator.generatePoints(8000);
 
 features.forEach((feature) => {
   feature.set('aValue', 1);
@@ -57,7 +59,7 @@ function getStyle (feature){
 let clusterLayer = new AnimatedCluster({
   name: 'Cluster',
   source: clusterSource,
-  animationDuration: 300,
+  animationDuration: animationTime,
   style: getStyle
 });
 
@@ -83,31 +85,29 @@ let map = new Map({
 // Select interaction to spread cluster out and select features
 var selectCluster = new SelectCluster({
   // Point radius: to calculate distance between the features
-  pointRadius:7,
+  pointRadius: 7,
   animate: true,
+  spiral: true,
   // Feature style when it springs apart
   featureStyle: function(){
     return [ styleGenerator.circleForClusterExample() ]
-  },
-  layerFilter: function(l){
-    return l===clusterLayer;
   }
 });
 map.addInteraction(selectCluster);
 
 // On selected => get feature in cluster and show info
 selectCluster.getFeatures().on(['add'], function (e){
-  var c = e.element.get('features');
-  if (c.length === 1){
-    var feature = c[0];
-    console.log("One feature selected...<br/>(id="+feature.get('id')+")");
-  } else {
+  let zoomToFly = clusterSource.getClusterExpansionZoom(e.element);
+
+  console.log('zoomToFly', zoomToFly);
+  console.log('count elements', e.element.get('features').length);
+
+  if(zoomToFly <= maxZoomToExpandCluster && zoomToFly !== view.getZoom()) {
     view.animate({
-      zoom: view.getZoom() + 1,
-      duration: 300,
+      zoom: zoomToFly,
+      duration: animationTime,
       center: e.element.getGeometry().getFirstCoordinate()
     });
-    console.log("Cluster ("+c.length+" features)");
   }
 });
 
