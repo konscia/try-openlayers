@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Clustered Features</title>
+    <link rel="stylesheet" href="../node_modules/ol/ol.css" type="text/css">
+	<style>
+		body {
+			margin: 20px 20%;
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+
+		section {
+			height: calc(50vh - 30px);
+			position: relative;
+		}
+
+		h1 {
+			position: absolute;
+			top: 10px;
+			left: 5%;
+			width: 90%;
+			text-align: center;
+			color: #444;
+			z-index: 10;
+			background: rgba(255, 255, 255, 0.7);
+			border-radius: 3px;
+			padding: 5px;
+		}
+
+		h1 a {
+			color: blue !important;
+		}
+
+		.map {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			top: 0;
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+<section>
+	<h1><a href="https://epsg.io/4326">EPSG:4362</a> - WGS84 - World Geodetic System 1984, used in GPS</a></h1>
+	<div id="map-lat-lon" class="map"></div>
+</section>
+
+<section>
+	<h1><a href="https://epsg.io/3857">EPSG:3857</a> - WGS 84 / Pseudo-Mercator Spherical Mercator, Google Maps, OpenStreetMap, ESRI</h1>
+	<div id="map" class="map"></div>
+</section>
+<script src="./2-projection.js" type="module"></script>
+</body>
+</html>

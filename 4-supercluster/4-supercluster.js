@@ -1,11 +1,15 @@
-import Map from 'ol/Map.js';
-import View from 'ol/View.js';
-import {Tile as TileLayer} from 'ol/layer.js';
+import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
 import AnimatedCluster from 'ol-ext/layer/AnimatedCluster.js';
-import {Cluster, OSM, Vector as VectorSource} from 'ol/source.js';
+import {OSM, Vector as VectorSource} from 'ol/source';
+import StyleGenerator from "./../src/StyleGenerator";
 import FeatureGenerator from "./../src/FeatureGenerator";
-import StyleGenerator from "../src/StyleGenerator";
 import SuperCluster from "ol-supercluster";
+
+/*
+ * Neste exemplo utilizamos juntos o Super cluster + a Animated Layer
+ */
 
 const styleGenerator = new StyleGenerator();
 const featureGenerator = new FeatureGenerator(1000000, 0, 0);
