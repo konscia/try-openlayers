@@ -59,9 +59,6 @@ new Map({
 
 /* **** EXEMPLO MERCATOR - EPSG:3857 - PADRÃO DO OPEN LAYERS **** */
 
-const latBrazilMeters = 0;
-const lonBrazilMeters = 0;
-
 const source3857 = new VectorSource({
   features: geojsonFormat.readFeatures(rj_geojson, {
     featureProjection: 'EPSG:3857'
@@ -95,40 +92,3 @@ new Map({
     zoom: 6
   })
 });
-
-
-
-//
-//
-// // 4326
-// const vectorSource3857 = new VectorSource({
-//   features: geojsonFormat.readFeatures(rj_geojson, {
-//     // featureProjection: "EPSG:3857",
-//   }),
-// });
-//
-// const vectorLayer3857 = new VectorLayer({
-//   source: vectorSource3857,
-//   style:  new Style({
-//     stroke: new Stroke({
-//       color: 'blue',
-//       width: 1
-//     }),
-//     fill: new Fill({
-//       color: 'rgba(0, 255, 255, 0.1)'
-//     })
-//   })
-// });
-//
-// new Map({
-//   layers: [raster1, pseudoMercatorLayer],
-//   target: 'map',
-//   view: new View({
-//     projection: 'EPSG:3857',
-//     center: fromLonLat([lonBrazil, latBrazil]),
-//     zoom: 2
-//   })
-// });
-//
-//
-// // If we put the vectorLayer3857 in this Map it won't work because the projection is different

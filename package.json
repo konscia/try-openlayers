@@ -8,7 +8,8 @@
     "2": "parcel 2-projection/2-projection.html -p 2222",
     "3": "parcel 3-cluster/3-cluster.html -p 3333",
     "4": "parcel 4-supercluster/4-supercluster.html -p 4444",
-    "5": "parcel 5-interactive/5-interactive.html -p 5555"
+    "5": "parcel 5-interactive/5-interactive.html -p 5555",
+    "6": "parcel 6-vector-tiles/6-vector-tiles.html -p 6660"
   },
   "repository": {
     "type": "git",
